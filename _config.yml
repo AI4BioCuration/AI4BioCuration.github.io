@@ -32,12 +32,12 @@ author:
   email            : "pengyuan@ibm.com" 
 
   # Relevant links
-  Alliance         : "https://www.alliancegenome.org"
-  ISB            : "https://www.biocuration.org/"
-  EMBL-EBI    : "hhttps://www.ebi.ac.uk"
-  GBC      : "https://globalbiodata.org"
-  NIH            : "https://www.nih.gov"
-  SIB         : "https://www.sib.swiss"
+  #Alliance         : "https://www.alliancegenome.org"
+  #ISB            : "https://www.biocuration.org/"
+  #EMBL-EBI    : "hhttps://www.ebi.ac.uk"
+  #GBC      : "https://globalbiodata.org"
+  #NIH            : "https://www.nih.gov"
+  #SIB         : "https://www.sib.swiss"
 
   # Social media
   facebook         : # Username
