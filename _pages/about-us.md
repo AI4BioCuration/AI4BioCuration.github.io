@@ -1,10 +1,10 @@
 ---
-permalink: /aboutus/
+permalink: /about-us/
 title: "About US"
 author_profile: true
 redirect_from: 
-  - /aboutus/
-  - /aboutus.html
+  - /about-us/
+  - /about-us.html
 ---
 
 ## Locations of key files/directories
