@@ -19,6 +19,12 @@ main:
     
   - title: "Events"
     url: /events/
+
+  - title: "Code Land"
+    url: /code-land/
+
+  - title: "Data Land"
+    url: /data-land/
         
   - title: "About Us"
     url: /about-us/
