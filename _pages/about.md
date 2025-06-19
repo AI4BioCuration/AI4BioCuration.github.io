@@ -1,6 +1,5 @@
 ---
 permalink: /
-title: "About"
 author_profile: true
 redirect_from: 
   - /about/
@@ -20,7 +19,6 @@ AI4Biocuration serves as a hub for biocurators, data infrastructure leaders, ML 
 - Encourage the development of transparent, cost-effective, and fit-for-purpose AI solutions
 Through community engagement and knowledge sharing, we aim to shape a future where AI augments the essential work of biocurators and contributes to the long-term sustainability of the biodata ecosystem.
 
-Resources
+Who we are?
 ======
-1. "AI and Biodata Resources Workshop" at [ISB 2025](https://www.stowers.org/events/biocuration2025)
-2. Talks about "[Large Language Models and their applications in Bioinformatics](https://www.ebi.ac.uk/training/events/large-language-models-and-their-applications-bioinformatics/)" from EMBL-EBI
+- [Alliance of Genome Resources](https://www.alliancegenome.org)
