@@ -5,6 +5,7 @@ title: "Data Land"
 author_profile: true
 redirect_from:
   - /dataland/
+  - /dataland.html
 ---
 
 {% include base_path %}
