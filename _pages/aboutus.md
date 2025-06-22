@@ -1,10 +1,9 @@
 ---
-permalink: /about-us/
+permalink: /aboutus/
 title: "About US"
 author_profile: true
 redirect_from: 
-  - /about-us/
-  - /about-us.html
+  - /aboutus/
 ---
 
 ## Who are we?
