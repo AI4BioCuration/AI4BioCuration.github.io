@@ -21,13 +21,13 @@ main:
     url: /events/
 
   - title: "Code Land"
-    url: /code-land/
+    url: /codeland/
 
   - title: "Data Land"
-    url: /data-land/
+    url: /dataland/
         
   - title: "About Us"
-    url: /about-us/
+    url: /aboutus/
     
   - title: "Guide"
     url: /markdown/
