@@ -4,6 +4,7 @@ title: "About US"
 author_profile: true
 redirect_from: 
   - /aboutus/
+  - /aboutus.html
 ---
 
 ## Who are we?
