@@ -5,6 +5,7 @@ title: "Code Land"
 author_profile: true
 redirect_from:
   - /codeland/
+  - /codeland.html
 ---
 
 {% include base_path %}
