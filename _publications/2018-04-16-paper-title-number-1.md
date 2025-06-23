@@ -3,9 +3,7 @@ title: "Biocuration: Distilling data into knowledge"
 collection: publications
 category: manuscripts
 permalink: /publication/2018-04-16-paper-title-number-1
-date: 2018-04-16
 excerpt: ''
-venue: 'PLoS Biology'
 paperurl: 'https://pubmed.ncbi.nlm.nih.gov/29659566/'
 citation: 'International Society for Biocuration, 2018. Biocuration: Distilling data into knowledge. PLoS Biology, 16(4), p.e2002846.'
 ---
