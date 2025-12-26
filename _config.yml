@@ -31,13 +31,22 @@ author:
   uri              : # URL
   email            : "pengyuan@ibm.com" 
 
-  # Relevant links
-  #Alliance         : "https://www.alliancegenome.org"
-  #ISB            : "https://www.biocuration.org/"
-  #EMBL-EBI    : "hhttps://www.ebi.ac.uk"
-  #GBC      : "https://globalbiodata.org"
-  #NIH            : "https://www.nih.gov"
-  #SIB         : "https://www.sib.swiss"
+  # Add custom fields
+  keywords:
+    - "Biocuration"
+    - "Artificial Intelligence"
+    - "Machine Learning"
+    - "FAIR Data"
+    - "Data Management"
+    - "Computational Biology"
+  
+  relevant_links:
+    - title: "Alliance of Genome Resources"
+      url: "https://www.alliancegenome.org"
+    - title: "International Society for Biocuration"
+      url: "https://www.biocuration.org"
+    - title: "FAIR Principles"
+      url: "https://www.go-fair.org"
 
   # Social media
   facebook         : # Username
@@ -48,7 +57,7 @@ author:
   keybase          : # Username
   instagram        : # Username
   lastfm           : # Username
-  linkedin         : "company/international-society-for-biocuration"
+  linkedin         : # Username
   mastodon         : # URL
   medium           : # URL
   pinterest        : # Username
