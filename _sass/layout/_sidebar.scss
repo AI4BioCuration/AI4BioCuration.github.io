@@ -157,6 +157,37 @@
   }
 }
 
+.author__keywords-title,
+.author__links-title {
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+  font-size: 0.9em;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: var(--global-text-color);
+}
+
+.author__keywords,
+.author__links {
+  list-style: disc;
+  margin: 0 0 1em 1.5em;
+  padding: 0;
+  
+  li {
+    margin-bottom: 0.25em;
+    font-size: 0.85em;
+  }
+  
+  a {
+    text-decoration: none;
+    color: var(--global-link-color);
+    
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
 .author__urls-wrapper {
   position: relative;
   display: table-cell;
