@@ -25,7 +25,7 @@ author:
   avatar           : "bio-photo.png"
   name             : #"AI4Biocuration"
   pronouns         : # example: "she/her"  
-  bio              : "AI4Biocuration is a community hub for sharing resources, research, and best practices at the intersection of artificial intelligence and biocuration."
+  bio              : "AI4Biocuration is a community-driven hub for sharing practical experiences, tools, and open questions around the responsible use of AI in biocuration workflows."
   location         : #"Earth"
   employer         : #"Red Brick University"
   uri              : # URL
