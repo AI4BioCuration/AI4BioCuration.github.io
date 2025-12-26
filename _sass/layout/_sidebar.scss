@@ -19,7 +19,7 @@
 
   @media screen and (min-width: $sidebar-screen-min-width) {
     position: sticky;
-    top: $masthead-height;
+    top: 0;
     max-height: calc(100vh - #{$masthead-height});
     padding-top: 0;
   }
