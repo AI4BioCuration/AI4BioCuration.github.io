@@ -19,8 +19,8 @@
 
   @media screen and (min-width: $sidebar-screen-min-width) {
     position: sticky;
-    top: $masthead-height;
-    max-height: calc(100vh - #{$masthead-height});
+    top: 0;
+    max-height: 100vh;
   }
 
   @include breakpoint($large) {
