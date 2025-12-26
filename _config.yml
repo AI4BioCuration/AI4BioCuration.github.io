@@ -29,24 +29,25 @@ author:
   location         : #"Earth"
   employer         : #"Red Brick University"
   uri              : # URL
-  email            : "pengyuan@ibm.com" 
+  email            : # "pengyuan@ibm.com" 
 
   # Add custom fields
   keywords:
     - "Biocuration"
     - "Artificial Intelligence"
-    - "Machine Learning"
-    - "FAIR Data"
-    - "Data Management"
-    - "Computational Biology"
+    - "Large Language Model"
+    - "Large Multimodal Model"
+    - "Evlauation Benchmark"
+    - "Human-In-The-Loop"
+    - "Biocuration Tools"
   
   relevant_links:
-    - title: "Alliance of Genome Resources"
-      url: "https://www.alliancegenome.org"
     - title: "International Society for Biocuration"
       url: "https://www.biocuration.org"
-    - title: "FAIR Principles"
-      url: "https://www.go-fair.org"
+    - title: "Alliance of Genome Resources"
+      url: "https://www.alliancegenome.org"
+    - title: "Global Biodata Coalition"
+      url: "https://globalbiodata.org/"
 
   # Social media
   facebook         : # Username
