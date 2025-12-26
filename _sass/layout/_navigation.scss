@@ -175,10 +175,9 @@
 .greedy-nav {
   position: relative;
   min-width: 250px;
-  width: 100%; /* Add this */
   background: var(--global-bg-color);
   display: flex;              /* Add this */
-  justify-content: space-between;  /* Add this */
+  justify-content: flex-end;  /* Add this */
   align-items: center;        /* Add this */
 
   a {
