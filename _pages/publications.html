@@ -5,32 +5,77 @@ permalink: /publications/
 author_profile: true
 ---
 
-{% if site.author.googlescholar %}
-  <div class="wordwrap">You can also find my articles on <a href="{{site.author.googlescholar}}">my Google Scholar profile</a>.</div>
-{% endif %}
+<link rel="stylesheet" href="{{ '/assets/css/publications.css' | relative_url }}">
 
-{% include base_path %}
-
-<!-- New style rendering if publication categories are defined -->
-{% if site.publication_category %}
-  {% for category in site.publication_category  %}
-    {% assign title_shown = false %}
-    {% for post in site.publications reversed %}
-      {% if post.category != category[0] %}
-        {% continue %}
-      {% endif %}
-      {% unless title_shown %}
-        <h2>{{ category[1].title }}</h2><hr />
-        {% assign title_shown = true %}
-      {% endunless %}
-      {% include archive-single.html %}
+{% if site.author.keywords %}
+<div class="keyword-filter">
+  <h3>Filter by Keyword:</h3>
+  <div class="keyword-buttons">
+    <button class="keyword-btn active" data-keyword="all">All</button>
+    {% for keyword in site.author.keywords %}
+      <button class="keyword-btn" data-keyword="{{ keyword | downcase | replace: ' ', '-' }}">{{ keyword }}</button>
     {% endfor %}
-  {% endfor %}
-{% else %}
-  {% for post in site.publications reversed %}
-    {% include archive-single.html %}
-  {% endfor %}
+  </div>
+</div>
 {% endif %}
 
+<div class="publications-list">
+  {% for post in site.publications reversed %}
+    {% if post.keywords %}
+      {% assign keywords_list = "" %}
+      {% for keyword in post.keywords %}
+        {% assign normalized = keyword | downcase | replace: ' ', '-' %}
+        {% if forloop.first %}
+          {% assign keywords_list = normalized %}
+        {% else %}
+          {% assign keywords_list = keywords_list | append: ',' | append: normalized %}
+        {% endif %}
+      {% endfor %}
+      {% assign pub_keywords = keywords_list %}
+    {% else %}
+      {% assign pub_keywords = "" %}
+    {% endif %}
+    
+    <div class="publication-item" data-keywords="{{ pub_keywords }}">
+      <h3 class="publication-title">
+        {% if post.paperurl %}
+          <a href="{{ post.paperurl }}" target="_blank">{{ post.title }}</a>
+        {% else %}
+          {{ post.title }}
+        {% endif %}
+      </h3>
+      
+      <div class="publication-meta">
+        {% if post.venue %}
+          <span class="venue"><strong>{{ post.venue }}</strong></span>
+        {% endif %}
+        
+        {% if post.date %}
+          <span class="date"> ({{ post.date | date: "%Y" }})</span>
+        {% endif %}
+      </div>
+      
+      <div class="publication-links">
+        {% if post.paperurl %}
+          <a href="{{ post.paperurl }}" class="btn btn--primary btn--small" target="_blank">Paper</a>
+        {% endif %}
+        
+        {% if post.slidesurl %}
+          <a href="{{ post.slidesurl }}" class="btn btn--primary btn--small" target="_blank">Slides</a>
+        {% endif %}
+        
+        <a href="{{ post.url }}" class="btn btn--inverse btn--small">Details</a>
+      </div>
+      
+      {% if post.keywords %}
+        <div class="publication-keywords">
+          {% for keyword in post.keywords %}
+            <span class="keyword-tag">{{ keyword }}</span>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+  {% endfor %}
+</div>
 
-
+<script src="{{ '/assets/js/publications.js' | relative_url }}"></script>
