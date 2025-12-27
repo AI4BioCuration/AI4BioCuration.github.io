@@ -19,8 +19,22 @@ author_profile: true
 
 <div class="publications-list">
   {% for post in site.publications reversed %}
-    {% assign keywords_string = post.keywords | join: ',' | downcase | replace: ' ', '-' %}
-    <div class="publication-item" data-keywords="{{ keywords_string }}">
+    {% if post.keywords %}
+      {% assign keywords_list = "" %}
+      {% for keyword in post.keywords %}
+        {% assign normalized = keyword | downcase | replace: ' ', '-' %}
+        {% if forloop.first %}
+          {% assign keywords_list = normalized %}
+        {% else %}
+          {% assign keywords_list = keywords_list | append: ',' | append: normalized %}
+        {% endif %}
+      {% endfor %}
+      {% assign pub_keywords = keywords_list %}
+    {% else %}
+      {% assign pub_keywords = "" %}
+    {% endif %}
+    
+    <div class="publication-item" data-keywords="{{ pub_keywords }}">
       <h3 class="publication-title">
         {% if post.paperurl %}
           <a href="{{ post.paperurl }}" target="_blank">{{ post.title }}</a>
@@ -170,29 +184,55 @@ author_profile: true
 </style>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  const filterButtons = document.querySelectorAll('.keyword-btn');
-  const publications = document.querySelectorAll('.publication-item');
+(function() {
+  // Wait for DOM to be fully loaded
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initFilter);
+  } else {
+    initFilter();
+  }
   
-  filterButtons.forEach(button => {
-    button.addEventListener('click', function() {
-      const keyword = this.getAttribute('data-keyword');
-      
-      // Update active button
-      filterButtons.forEach(btn => btn.classList.remove('active'));
-      this.classList.add('active');
-      
-      // Filter publications
-      publications.forEach(pub => {
-        const pubKeywords = pub.getAttribute('data-keywords');
+  function initFilter() {
+    const filterButtons = document.querySelectorAll('.keyword-btn');
+    const publications = document.querySelectorAll('.publication-item');
+    
+    console.log('Filter initialized');
+    console.log('Found ' + filterButtons.length + ' filter buttons');
+    console.log('Found ' + publications.length + ' publications');
+    
+    filterButtons.forEach(function(button) {
+      button.addEventListener('click', function() {
+        const keyword = this.getAttribute('data-keyword');
+        console.log('Clicked keyword: ' + keyword);
         
-        if (keyword === 'all' || pubKeywords.includes(keyword)) {
-          pub.classList.remove('hidden');
-        } else {
-          pub.classList.add('hidden');
-        }
+        // Update active button
+        filterButtons.forEach(function(btn) {
+          btn.classList.remove('active');
+        });
+        this.classList.add('active');
+        
+        // Filter publications
+        publications.forEach(function(pub) {
+          const pubKeywords = pub.getAttribute('data-keywords') || '';
+          console.log('Publication keywords: "' + pubKeywords + '"');
+          
+          if (keyword === 'all') {
+            pub.classList.remove('hidden');
+          } else if (pubKeywords === '') {
+            // No keywords, hide it when filtering
+            pub.classList.add('hidden');
+          } else {
+            // Check if the keyword is in the comma-separated list
+            const keywordList = pubKeywords.split(',');
+            if (keywordList.indexOf(keyword) !== -1) {
+              pub.classList.remove('hidden');
+            } else {
+              pub.classList.add('hidden');
+            }
+          }
+        });
       });
     });
-  });
-});
+  }
+})();
 </script>
