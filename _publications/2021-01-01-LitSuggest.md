@@ -1,0 +1,14 @@
+---
+title: "LitSuggest: a web-based system for literature recommendation and curation using machine learning"
+date: 2021-01-01
+venue: "Nucleic Acids Research"
+paperurl: "https://pubmed.ncbi.nlm.nih.gov/33950204/"
+citation: "Allot, A. et al., 2021. LitSuggest. Nucleic Acids Research, 49(W1)."
+keywords:
+  - Curation Tool
+  - Text Mining & NLP
+  - Evaluation & Benchmarking
+category: "AI-Assisted Biocuration Workflows"
+---
+
+Searching and reading relevant literature is a routine practice in biomedical research. However, it is challenging for a user to design optimal search queries using all the keywords related to a given topic. As such, existing search systems such as PubMed often return suboptimal results. Several computational methods have been proposed as an effective alternative to keyword-based query methods for literature recommendation. However, those methods require specialized knowledge in machine learning and natural language processing, which can make them difficult for biologists to utilize. In this paper, we propose LitSuggest, a web server that provides an all-in-one literature recommendation and curation service to help biomedical researchers stay up to date with scientific literature. LitSuggest combines advanced machine learning techniques for suggesting relevant PubMed articles with high accuracy. In addition to innovative text-processing methods, LitSuggest offers multiple advantages over existing tools. First, LitSuggest allows users to curate, organize, and download classification results in a single interface. Second, users can easily fine-tune LitSuggest results by updating the training corpus. Third, results can be readily shared, enabling collaborative analysis and curation of scientific literature. Finally, LitSuggest provides an automated personalized weekly digest of newly published articles for each user's project. LitSuggest is publicly available at https://www.ncbi.nlm.nih.gov/research/litsuggest.
