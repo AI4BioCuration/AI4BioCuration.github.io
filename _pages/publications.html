@@ -57,6 +57,10 @@ author_profile: true
   border-bottom: 1px solid #f2f3f3;
 }
 
+.publication-item.hidden {
+  display: none !important;
+}
+
 .publication-title {
   margin-top: 0;
   margin-bottom: 0.5em;
@@ -103,6 +107,18 @@ author_profile: true
   border-radius: 3px;
   font-size: 0.8em;
   color: #2c5f7c;
+}
+
+.no-results {
+  padding: 2em;
+  text-align: center;
+  color: #666;
+  font-style: italic;
+  display: none;
+}
+
+.no-results.visible {
+  display: block;
 }
 </style>
 
@@ -175,6 +191,10 @@ author_profile: true
       {% endif %}
     </div>
   {% endfor %}
+  
+  <div class="no-results" id="noResults">
+    No publications found matching this keyword.
+  </div>
 </div>
 
 <script>
@@ -183,6 +203,8 @@ function filterPubs(keyword) {
   
   var buttons = document.querySelectorAll('.keyword-btn');
   var pubs = document.querySelectorAll('.publication-item');
+  var noResults = document.getElementById('noResults');
+  var visibleCount = 0;
   
   // Update active button
   for (var i = 0; i < buttons.length; i++) {
@@ -198,23 +220,46 @@ function filterPubs(keyword) {
     var pub = pubs[j];
     var keywords = pub.getAttribute('data-keywords') || '';
     
+    console.log('Checking publication with keywords: "' + keywords + '"');
+    
     if (keyword === 'all') {
-      pub.style.display = '';
+      // Show all publications
+      pub.classList.remove('hidden');
+      visibleCount++;
     } else if (keywords === '') {
-      pub.style.display = 'none';
+      // Publication has no keywords - hide it when filtering
+      pub.classList.add('hidden');
+      console.log('  -> Hidden (no keywords)');
     } else {
+      // Check if keyword matches
       var keywordList = keywords.split(',');
       var found = false;
+      
       for (var k = 0; k < keywordList.length; k++) {
-        if (keywordList[k] === keyword) {
+        if (keywordList[k].trim() === keyword) {
           found = true;
           break;
         }
       }
-      pub.style.display = found ? '' : 'none';
+      
+      if (found) {
+        pub.classList.remove('hidden');
+        visibleCount++;
+        console.log('  -> Visible (matched)');
+      } else {
+        pub.classList.add('hidden');
+        console.log('  -> Hidden (no match)');
+      }
     }
   }
   
-  console.log('Filtering complete');
+  // Show/hide "no results" message
+  if (visibleCount === 0 && keyword !== 'all') {
+    noResults.classList.add('visible');
+  } else {
+    noResults.classList.remove('visible');
+  }
+  
+  console.log('Filtering complete - ' + visibleCount + ' publications visible');
 }
 </script>
