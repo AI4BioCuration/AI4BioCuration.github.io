@@ -33,13 +33,16 @@ author:
 
   # Add custom fields
   keywords:
-    - "Biocuration"
-    - "Artificial Intelligence"
-    - "Large Language Model"
-    - "Large Multimodal Model"
-    - "Evlauation Benchmark"
-    - "Human-In-The-Loop"
-    - "Biocuration Tools"
+    - "Biocuration Workflow"
+    - "Curation Tool"
+    - "Human-in-the-Loop"
+    - "Large Language Models"
+    - "Multimodal AI"
+    - "Evaluation & Benchmarking"
+    - "Knowledge Representation & Ontologies"
+    - "Sustainability & Governance"
+    - "Text Mining & NLP"
+    - "Data & Benchmarks"
   
   relevant_links:
     - title: "International Society for Biocuration"
