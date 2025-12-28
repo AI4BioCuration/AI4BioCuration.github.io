@@ -8,6 +8,8 @@ permalink: /publication/2018-04-16-paper-title-number-1
 excerpt: ''
 paperurl: 'https://pubmed.ncbi.nlm.nih.gov/29659566/'
 citation: 'International Society for Biocuration, 2018. Biocuration: Distilling data into knowledge. PLoS Biology, 16(4), p.e2002846.'
+keywords:
+  - Evaluation Benchmark
 ---
 
 
