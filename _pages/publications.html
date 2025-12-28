@@ -1,190 +1,284 @@
 ---
+layout: publications-layout
+title: "Publications"
 permalink: /publications/
+author_profile: true
 ---
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>Publications - AI4Biocuration</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/assets/css/main.css">
-    <style>
-        .keyword-filter {
-            margin-bottom: 2em;
-            padding: 1.5em;
-            background: #fff;
-            border: 1px solid #f2f3f3;
-            border-radius: 4px;
-        }
-        .keyword-filter h3 {
-            margin-top: 0;
-            margin-bottom: 1em;
-            font-size: 1.1em;
-        }
-        .keyword-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5em;
-        }
-        .keyword-btn {
-            padding: 0.4em 0.8em;
-            background: #f0f0f0;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.9em;
-            transition: all 0.2s;
-        }
-        .keyword-btn:hover {
-            background: #e0e0e0;
-        }
-        .keyword-btn.active {
-            background: #52adc8 !important;
-            color: white !important;
-            border-color: #52adc8 !important;
-        }
-        .publication-item {
-            margin-bottom: 2em;
-            padding-bottom: 1.5em;
-            border-bottom: 1px solid #f2f3f3;
-        }
-        .publication-item.hidden {
-            display: none !important;
-        }
-        .publication-title {
-            margin-top: 0;
-            margin-bottom: 0.5em;
-            font-size: 1.2em;
-        }
-        .publication-title a {
-            color: #52adc8;
-            text-decoration: none;
-        }
-        .publication-meta {
-            margin-bottom: 0.8em;
-            color: #666;
-        }
-        .keyword-tag {
-            display: inline-block;
-            padding: 0.2em 0.6em;
-            background: #e8f4f8;
-            border: 1px solid #b8d4e0;
-            border-radius: 3px;
-            font-size: 0.8em;
-            margin-right: 0.5em;
-        }
-    </style>
-</head>
-<body>
-    {% include masthead.html %}
+
+<style>
+.keyword-filter {
+  margin-bottom: 2em;
+  padding: 1.5em;
+  background: #fff;
+  border: 1px solid #f2f3f3;
+  border-radius: 4px;
+}
+
+.keyword-filter h3 {
+  margin-top: 0;
+  margin-bottom: 1em;
+  font-size: 1.1em;
+}
+
+.keyword-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
+}
+
+.keyword-btn {
+  padding: 0.4em 0.8em;
+  background: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: all 0.2s;
+  font-family: -apple-system, BlinkMacSystemFont, "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", Arial, sans-serif;
+}
+
+.keyword-btn:hover {
+  background: #e0e0e0;
+}
+
+.keyword-btn.active {
+  background: #52adc8 !important;
+  color: white !important;
+  border-color: #52adc8 !important;
+}
+
+.publications-list {
+  margin-top: 2em;
+}
+
+.publication-item {
+  margin-bottom: 2em;
+  padding-bottom: 1.5em;
+  border-bottom: 1px solid #f2f3f3;
+}
+
+.publication-item.hidden {
+  display: none !important;
+}
+
+.publication-title {
+  margin-top: 0;
+  margin-bottom: 0.5em;
+  font-size: 1.2em;
+  line-height: 1.4;
+}
+
+.publication-title a {
+  color: #52adc8;
+  text-decoration: none;
+}
+
+.publication-title a:hover {
+  text-decoration: underline;
+}
+
+.publication-meta {
+  margin-bottom: 0.8em;
+  color: #666;
+  font-size: 0.95em;
+}
+
+.publication-links {
+  margin-bottom: 0.8em;
+}
+
+.publication-links .btn {
+  margin-right: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.publication-keywords {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
+  margin-top: 0.8em;
+}
+
+.keyword-tag {
+  display: inline-block;
+  padding: 0.2em 0.6em;
+  background: #e8f4f8;
+  border: 1px solid #b8d4e0;
+  border-radius: 3px;
+  font-size: 0.8em;
+  color: #2c5f7c;
+}
+
+.no-results {
+  padding: 2em;
+  text-align: center;
+  color: #666;
+  font-style: italic;
+  display: none;
+}
+
+.no-results.visible {
+  display: block;
+}
+</style>
+
+{% if site.author.keywords %}
+<div class="keyword-filter">
+  <h3>Filter by Keyword:</h3>
+  <div class="keyword-buttons" id="keywordButtons">
+    <button type="button" class="keyword-btn active" data-keyword="all">All</button>
+    {% for keyword in site.author.keywords %}
+      <button type="button" class="keyword-btn" data-keyword="{{ keyword | downcase | replace: ' ', '-' }}">{{ keyword }}</button>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
+
+<div class="publications-list">
+  {% for post in site.publications reversed %}
+    {% if post.keywords %}
+      {% assign keywords_list = "" %}
+      {% for keyword in post.keywords %}
+        {% assign normalized = keyword | downcase | replace: ' ', '-' %}
+        {% if forloop.first %}
+          {% assign keywords_list = normalized %}
+        {% else %}
+          {% assign keywords_list = keywords_list | append: ',' | append: normalized %}
+        {% endif %}
+      {% endfor %}
+      {% assign pub_keywords = keywords_list %}
+    {% else %}
+      {% assign pub_keywords = "" %}
+    {% endif %}
     
-    <div id="main" role="main">
-        {% include sidebar.html %}
+    <div class="publication-item" data-keywords="{{ pub_keywords }}">
+      <h3 class="publication-title">
+        {% if post.paperurl %}
+          <a href="{{ post.paperurl }}" target="_blank">{{ post.title }}</a>
+        {% else %}
+          {{ post.title }}
+        {% endif %}
+      </h3>
+      
+      <div class="publication-meta">
+        {% if post.venue %}
+          <span class="venue"><strong>{{ post.venue }}</strong></span>
+        {% endif %}
         
-        <div class="archive">
-            <h1>Publications</h1>
-            
-            {% if site.author.keywords %}
-            <div class="keyword-filter">
-                <h3>Filter by Keyword:</h3>
-                <div class="keyword-buttons">
-                    <button class="keyword-btn active" onclick="filterPubs('all')">All</button>
-                    {% for keyword in site.author.keywords %}
-                    <button class="keyword-btn" onclick="filterPubs('{{ keyword | downcase | replace: ' ', '-' }}')">{{ keyword }}</button>
-                    {% endfor %}
-                </div>
-            </div>
-            {% endif %}
-            
-            <div class="publications-list">
-                {% for post in site.publications reversed %}
-                    {% if post.keywords %}
-                        {% assign keywords_list = "" %}
-                        {% for keyword in post.keywords %}
-                            {% assign normalized = keyword | downcase | replace: ' ', '-' %}
-                            {% if forloop.first %}
-                                {% assign keywords_list = normalized %}
-                            {% else %}
-                                {% assign keywords_list = keywords_list | append: ',' | append: normalized %}
-                            {% endif %}
-                        {% endfor %}
-                        {% assign pub_keywords = keywords_list %}
-                    {% else %}
-                        {% assign pub_keywords = "" %}
-                    {% endif %}
-                    
-                    <div class="publication-item" data-keywords="{{ pub_keywords }}">
-                        <h3 class="publication-title">
-                            {% if post.paperurl %}
-                                <a href="{{ post.paperurl }}" target="_blank">{{ post.title }}</a>
-                            {% else %}
-                                {{ post.title }}
-                            {% endif %}
-                        </h3>
-                        
-                        <div class="publication-meta">
-                            {% if post.venue %}<strong>{{ post.venue }}</strong>{% endif %}
-                            {% if post.date %} ({{ post.date | date: "%Y" }}){% endif %}
-                        </div>
-                        
-                        <div class="publication-links">
-                            {% if post.paperurl %}<a href="{{ post.paperurl }}" class="btn btn--primary btn--small" target="_blank">Paper</a>{% endif %}
-                            {% if post.slidesurl %}<a href="{{ post.slidesurl }}" class="btn btn--primary btn--small" target="_blank">Slides</a>{% endif %}
-                            <a href="{{ post.url }}" class="btn btn--inverse btn--small">Details</a>
-                        </div>
-                        
-                        {% if post.keywords %}
-                        <div class="publication-keywords">
-                            {% for keyword in post.keywords %}<span class="keyword-tag">{{ keyword }}</span>{% endfor %}
-                        </div>
-                        {% endif %}
-                    </div>
-                {% endfor %}
-            </div>
+        {% if post.date %}
+          <span class="date"> ({{ post.date | date: "%Y" }})</span>
+        {% endif %}
+      </div>
+      
+      <div class="publication-links">
+        {% if post.paperurl %}
+          <a href="{{ post.paperurl }}" class="btn btn--primary btn--small" target="_blank">Paper</a>
+        {% endif %}
+        
+        {% if post.slidesurl %}
+          <a href="{{ post.slidesurl }}" class="btn btn--primary btn--small" target="_blank">Slides</a>
+        {% endif %}
+        
+        <a href="{{ post.url }}" class="btn btn--inverse btn--small">Details</a>
+      </div>
+      
+      {% if post.keywords %}
+        <div class="publication-keywords">
+          {% for keyword in post.keywords %}
+            <span class="keyword-tag">{{ keyword }}</span>
+          {% endfor %}
         </div>
+      {% endif %}
     </div>
+  {% endfor %}
+  
+  <div class="no-results" id="noResults">
+    No publications found matching this keyword.
+  </div>
+</div>
+
+<script type="text/javascript">
+(function() {
+  'use strict';
+  
+  // Wait for DOM to be ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+  
+  function init() {
+    console.log('Initializing publication filter');
     
-    {% include footer.html %}
+    var buttons = document.querySelectorAll('.keyword-btn');
+    console.log('Found ' + buttons.length + ' buttons');
     
-    <script>
-    function filterPubs(keyword) {
-        var pubs = document.querySelectorAll('.publication-item');
-        var buttons = document.querySelectorAll('.keyword-btn');
-        
-        // Update active button
-        for (var i = 0; i < buttons.length; i++) {
-            buttons[i].classList.remove('active');
-            if (buttons[i].textContent.trim().toLowerCase().replace(/ /g, '-') === keyword ||
-                (keyword === 'all' && buttons[i].textContent.trim() === 'All')) {
-                buttons[i].classList.add('active');
-            }
-        }
-        
-        // Filter publications
-        for (var j = 0; j < pubs.length; j++) {
-            var keywords = pubs[j].getAttribute('data-keywords') || '';
-            
-            if (keyword === 'all') {
-                pubs[j].classList.remove('hidden');
-            } else if (keywords === '') {
-                pubs[j].classList.add('hidden');
-            } else {
-                var keywordList = keywords.split(',');
-                var found = false;
-                for (var k = 0; k < keywordList.length; k++) {
-                    if (keywordList[k].trim() === keyword) {
-                        found = true;
-                        break;
-                    }
-                }
-                if (found) {
-                    pubs[j].classList.remove('hidden');
-                } else {
-                    pubs[j].classList.add('hidden');
-                }
-            }
-        }
+    // Add click event to each button
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].addEventListener('click', function(e) {
+        var keyword = this.getAttribute('data-keyword');
+        console.log('Clicked: ' + keyword);
+        filterPublications(keyword);
+      });
     }
-    </script>
-</body>
-</html>
+  }
+  
+  function filterPublications(keyword) {
+    console.log('Filtering by: ' + keyword);
+    
+    var buttons = document.querySelectorAll('.keyword-btn');
+    var pubs = document.querySelectorAll('.publication-item');
+    var noResults = document.getElementById('noResults');
+    var visibleCount = 0;
+    
+    // Update active button
+    for (var i = 0; i < buttons.length; i++) {
+      if (buttons[i].getAttribute('data-keyword') === keyword) {
+        buttons[i].classList.add('active');
+      } else {
+        buttons[i].classList.remove('active');
+      }
+    }
+    
+    // Filter publications
+    for (var j = 0; j < pubs.length; j++) {
+      var pub = pubs[j];
+      var pubKeywords = pub.getAttribute('data-keywords') || '';
+      
+      if (keyword === 'all') {
+        pub.classList.remove('hidden');
+        visibleCount++;
+      } else if (pubKeywords === '') {
+        pub.classList.add('hidden');
+      } else {
+        var keywordList = pubKeywords.split(',');
+        var found = false;
+        
+        for (var k = 0; k < keywordList.length; k++) {
+          if (keywordList[k] === keyword) {
+            found = true;
+            break;
+          }
+        }
+        
+        if (found) {
+          pub.classList.remove('hidden');
+          visibleCount++;
+        } else {
+          pub.classList.add('hidden');
+        }
+      }
+    }
+    
+    // Show/hide no results message
+    if (visibleCount === 0 && keyword !== 'all') {
+      noResults.classList.add('visible');
+    } else {
+      noResults.classList.remove('visible');
+    }
+    
+    console.log('Done filtering. Visible: ' + visibleCount);
+  }
+})();
+</script>
